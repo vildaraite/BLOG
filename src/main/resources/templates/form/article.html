@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:with="isArticleExist=${article.id ne null}">
+<head th:replace="fragments/fragments :: head(${isArticleExist ? 'Upadte article' : 'Create article'})"></head>
+<body>
+<nav th:replace="fragments/fragments :: navigation"></nav>
+<div class="container">
+    <h3 th:text="${isArticleExist ? 'Update article:' : 'Create article:'}"></h3>
+    <form method="post" th:object="${article}">
+        <div class="mb-3">
+        <label for="title"
+               class="form-label">Article title:</label>
+        <input type="text"
+               class="form-control"
+               id="title"
+               aria-describedby="nameFeedback"
+               th:classappend="${#fields.hasErrors('title')} ? 'is-invalid' : (${article.title ne null} ? 'is-valid' : '')"
+               th:field="*{title}" required>
+        <div id="nameFeedback"
+             class="invalid-feedback"
+             th:if="${#fields.hasErrors('title')}"
+             th:errors="*{title}">
+        </div>
+</div>
+<div class="mb-3">
+    <label for="description"
+           class="form-label">Article Description:</label>
+    <textarea class="form-control"
+              id="description"
+              aria-describedby="descriptionFeedback"
+              th:classappend="${#fields.hasErrors('description')} ? 'is-invalid' : (${article.description ne null} ? 'is-valid' : '')"
+              th:field="*{description}" required></textarea>
+    <div id="descriptionFeedback"
+         class="invalid-feedback"
+         th:if="${#fields.hasErrors('description')}"
+         th:errors="*{description}">
+    </div>
+</div>
+<div class="mb-3">
+    <label for="category"
+           class="form-label">Product Category:</label>
+    <input type="text"
+           class="form-control"
+           id="category"
+           aria-describedby="categoryFeedback"
+           th:classappend="${#fields.hasErrors('category')} ? 'is-invalid' : (${article.category ne null} ? 'is-valid' : '')"
+           th:field="*{category}" required>
+    <div id="categoryFeedback"
+         class="invalid-feedback"
+         th:if="${#fields.hasErrors('category')}"
+         th:errors="*{category}">
+    </div>
+    <button type="submit"
+            class="btn btn-primary"
+            th:text="${isArticleExist ? 'Update' : 'Create'}"></button>
+</div>
+</form>
+<div th:if="${message}" th:text="${message}"></div>
+</div>
+<footer th:replace="fragments/fragments :: footer"></footer>
+</body>
+</html>

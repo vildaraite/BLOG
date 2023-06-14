@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head('Create User')"></head>
+<body>
+<nav th:replace="fragments/fragments :: navigation"></nav>
+<div class="container">
+  <h3>Create User:</h3>
+  <form method="post" th:object="${user}">
+    <div class="mb-3">
+      <label for="name"
+             class="form-label">Name:</label>
+      <input type="text"
+             class="form-control"
+             id="name"
+             aria-describedby="nameFeedback"
+             th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : (${user.name ne null} ? 'is-valid' : '')"
+             th:field="*{name}">
+      <div id="nameFeedback"
+           class="invalid-feedback"
+           th:if="${#fields.hasErrors('name')}"
+           th:errors="*{name}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="surname"
+             class="form-label">Surname:</label>
+      <input type="text"
+             class="form-control"
+             id="surname"
+             aria-describedby="surnameFeedback"
+             th:classappend="${#fields.hasErrors('surname')} ? 'is-invalid' : (${user.surname ne null} ? 'is-valid' : '')"
+             th:field="*{surname}" required>
+      <div id="surnameFeedback"
+           class="invalid-feedback"
+           th:if="${#fields.hasErrors('surname')}"
+           th:errors="*{surname}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email"
+             class="form-label">Email:</label>
+      <input type="email"
+             class="form-control"
+             id="email"
+             aria-describedby="emailFeedback"
+             th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : (${user.email ne null} ? 'is-valid' : '')"
+             th:field="*{email}" required>
+      <div id="emailFeedback"
+           class="invalid-feedback"
+           th:if="${#fields.hasErrors('email')}"
+           th:errors="*{email}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="phone"
+             class="form-label">Phone:</label>
+      <input type="text"
+             class="form-control"
+             id="phone"
+             aria-describedby="phoneFeedback"
+             th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid' : (${user.phone ne null} ? 'is-valid' : '')"
+             th:field="*{phone}" required>
+      <div id="phoneFeedback"
+           class="invalid-feedback"
+           th:if="${#fields.hasErrors('phone')}"
+           th:errors="*{phone}">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password"
+             class="form-label">Password:</label>
+      <input type="password"
+             class="form-control"
+             id="password"
+             aria-describedby="passwordFeedback"
+             th:classappend="${#fields.hasErrors('password') || #fields.hasErrors('global')} ? 'is-invalid' : (${user.password ne null} ? 'is-valid' : '')"
+             th:field="*{password}" required>
+      <div id="passwordFeedback"
+           class="invalid-feedback">
+        <div th:if="${#fields.hasErrors('password')}"
+             th:errors="*{password}"></div>
+        <div th:if="${#fields.hasErrors('global')}"
+             th:errors="*{global}"></div>
+    </div>
+    <div class="mb-3">
+      <label for="repeatPassword"
+             class="form-label">Repeat password:</label>
+      <input type="password"
+             class="form-control"
+             id="repeatPassword"
+             aria-describedby="repeatPasswordFeedback"
+             th:classappend="${#fields.hasErrors('repeatPassword') || #fields.hasErrors('global')} ? 'is-invalid' : (${user.repeatPassword ne null} ? 'is-valid' : '')"
+             th:field="*{repeatPassword}" required>
+      <div id="repeatPasswordFeedback"
+           class="invalid-feedback">
+        <div th:if="${#fields.hasErrors('repeatPassword')}"
+             th:errors="*{repeatPassword}"></div>
+        <div th:if="${#fields.hasErrors('global')}"
+             th:errors="*{global}"></div>
+      </div>
+    </div>
+    <button type="submit"
+            class="btn btn-primary">Create</button>
+  </form>
+</div>
+<footer th:replace="fragments/fragments :: footer"></footer>
+</body>
+</html>

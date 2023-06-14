@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom error page</title>
+</head>
+<body>
+<div th:text="'Custome error pafe: `' + ${path} + '`'"></div>
+<div th:text="'Status: ' + ${status}"></div>
+<div th:text="'name: ' + ${developer.name} + ' surname: ' + ${developer.surname}"></div>
+</body>
+</html>
